@@ -83,5 +83,6 @@ $result = DB::table('staff as s')
             ->leftJoin('country as con','c.country_id','=','con.country_id')
             ->oderBy('id')
             ->get()
+
 ```
 
