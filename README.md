@@ -70,19 +70,28 @@ $users = DB::table('users')
 ```
 #### Joins
 ~~~~sql
-select s.`id`,s.`name`,s.`email`,addr.`address`,addr.`district`,addr.`postal_code`,c.`city`,con.`country` from staff as s left join address as addr on s.`address_id` = addr.`address_id` left join city as c on addr.`city_id` =c.`city_id` left join country as con on c.`country_id` = con.`country_id` oder by id
+select s.`id`,s.`name`,s.`email`,
+    addr.`address`,addr.`district`,addr.`postal_code`,
+    c.`city`,con.`country` 
+    from 
+        staff as s left join address as addr 
+        on s.`address_id` = addr.`address_id` 
+        left join city as c on addr.`city_id` =c.`city_id` 
+        left join country as con on c.`country_id` = con.`country_id` 
+        oder by id
 ~~~~
 
 ```php
 $result = DB::table('staff as s')
             ->select([
-                's.id','s.id','s.name','s.email','addr.address','addr.district','addr.postal_code','c.city','con.country'
+                's.id','s.id','s.name','s.email',
+                'addr.address','addr.district','addr.postal_code',
+                'c.city','con.country'
             ])
             ->leftJoin('address as addr','s.address_id','=','addr.address_id')
             ->leftJoin('city as c','addr.city_id','=','c.city_id')
             ->leftJoin('country as con','c.country_id','=','con.country_id')
             ->oderBy('id')
             ->get()
-
 ```
 
